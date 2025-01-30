@@ -16,6 +16,25 @@ const Navbar = async () => {
   const { isAuthenticated, getUser } = getKindeServerSession()
   const user = await getUser()
 
+  const navLinks = [
+    {
+      name: 'Home',
+      href: '/'
+    },
+    {
+      name: 'About',
+      href: '/about'
+    },
+    {
+      name: 'Member',
+      href: '/member'
+    },
+    {
+      name: 'Projects',
+      href: '/projects'
+    }
+  ]
+
   let initial
   let truncatedUserEmail
 
@@ -25,7 +44,7 @@ const Navbar = async () => {
   }
 
   return (
-    <div className='fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between'>
+    <nav className='fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between'>
       <div className='container mx-auto flex w-full max-w-7xl items-center justify-between'>
         <Link
           href={'/'}
@@ -38,24 +57,18 @@ const Navbar = async () => {
         </Link>
 
         <div className='hidden gap-4 md:flex'>
-          <Link
-            href={'/'}
-            className={buttonVariants({
-              variant: 'link',
-              className: 'text-base text-white'
-            })}
-          >
-            Home
-          </Link>
-          <Link
-            href={'/about'}
-            className={buttonVariants({
-              variant: 'link',
-              className: 'text-base text-white'
-            })}
-          >
-            About
-          </Link>
+          {navLinks.map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              className={buttonVariants({
+                variant: 'link',
+                className: 'text-base text-white'
+              })}
+            >
+              {link.name}
+            </Link>
+          ))}
           {(await isAuthenticated()) ? (
             <DropdownMenu>
               <DropdownMenuTrigger>
@@ -111,7 +124,7 @@ const Navbar = async () => {
           )}
         </div>
       </div>
-    </div>
+    </nav>
   )
 }
 
