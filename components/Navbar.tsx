@@ -25,13 +25,37 @@ const Navbar = async () => {
   }
 
   return (
-    <div className='fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between border-b border-zinc-300 bg-white/75 shadow-sm backdrop-blur-sm dark:border-zinc-700 dark:bg-zinc-900/75'>
+    <div className='fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between'>
       <div className='container mx-auto flex w-full max-w-7xl items-center justify-between'>
-        <Link href={'/'} className={buttonVariants({ variant: 'link' })}>
+        <Link
+          href={'/'}
+          className={buttonVariants({
+            variant: 'link',
+            className: 'text-base text-white'
+          })}
+        >
           🖥️Syntesa.
         </Link>
 
         <div className='hidden gap-4 md:flex'>
+          <Link
+            href={'/home'}
+            className={buttonVariants({
+              variant: 'link',
+              className: 'text-base text-white'
+            })}
+          >
+            Home
+          </Link>
+          <Link
+            href={'/about'}
+            className={buttonVariants({
+              variant: 'link',
+              className: 'text-base text-white'
+            })}
+          >
+            About
+          </Link>
           {(await isAuthenticated()) ? (
             <DropdownMenu>
               <DropdownMenuTrigger>
@@ -58,7 +82,7 @@ const Navbar = async () => {
                   </Avatar>
                   <div className='block p-4'>
                     <h3 className='font-medium'>{user.given_name}</h3>
-                    <span className='text-muted-foreground text-sm'>
+                    <span className='text-sm text-muted-foreground'>
                       {truncatedUserEmail}
                     </span>
                   </div>
@@ -67,7 +91,7 @@ const Navbar = async () => {
                 <LogoutLink
                   className={buttonVariants({
                     variant: 'ghost',
-                    className: 'flex w-full'
+                    className: 'flex w-full text-base'
                   })}
                   style={{ justifyContent: 'flex-start' }}
                 >
@@ -76,8 +100,13 @@ const Navbar = async () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <LoginLink className={buttonVariants({ variant: 'ghost' })}>
-              Sign in
+            <LoginLink
+              className={buttonVariants({
+                variant: 'ghost',
+                className: 'text-base text-white'
+              })}
+            >
+              Sign In
             </LoginLink>
           )}
         </div>
