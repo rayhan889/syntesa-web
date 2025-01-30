@@ -49,7 +49,7 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
     truncatedUserEmail = user?.email?.slice(0, 13) + '...'
   }
 
-  const textColor = isInViewRef ? 'text-white' : 'text-slate-900'
+  const textColor = (isInViewRef ?? false) ? 'text-white' : 'text-slate-900'
 
   return (
     <nav
