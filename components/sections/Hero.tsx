@@ -66,7 +66,7 @@ const Hero = () => {
   }, [subIndex, index, isDeleting, fullText])
 
   return (
-    <section className='relative h-full w-full bg-black/40'>
+    <section className='relative h-full w-full bg-black/40' id='hero-section'>
       <Image
         src='/assets/main_img.jpg'
         alt='Main Image'
@@ -80,7 +80,7 @@ const Hero = () => {
         <div className='flex h-full flex-col items-center justify-center space-y-4'>
           <Link
             href='https://www.unesa.ac.id/page/akademik/fakultas-teknik/s1-teknik-informatika'
-            className='flex items-center gap-x-1 rounded-full border border-zinc-400 bg-white/25 px-5 py-1 text-sm text-white backdrop-blur-sm'
+            className='flex items-center gap-x-1 rounded-full border border-zinc-300 bg-white/25 px-5 py-1 text-sm text-white shadow-sm backdrop-blur-sm'
           >
             <span>Part of UNESA Informatics Engineering.</span>
             <ExternalLink size={14} />
@@ -96,7 +96,7 @@ const Hero = () => {
           </h4>
           <Button
             size={'lg'}
-            className='bg-blue-600 shadow-sm shadow-blue-500/40 transition-colors duration-300 hover:bg-blue-700'
+            className='w-[80%] bg-blue-600 shadow-sm shadow-blue-500/40 transition-colors duration-300 hover:bg-blue-700 lg:w-[15%]'
           >
             Learn More
           </Button>
