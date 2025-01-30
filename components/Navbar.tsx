@@ -39,7 +39,7 @@ const Navbar = async () => {
 
         <div className='hidden gap-4 md:flex'>
           <Link
-            href={'/home'}
+            href={'/'}
             className={buttonVariants({
               variant: 'link',
               className: 'text-base text-white'
