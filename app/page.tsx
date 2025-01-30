@@ -1,21 +1,15 @@
 import Hero from '@/components/sections/Hero'
+import About from '@/components/sections/About'
+import Member from '@/components/sections/Member'
 
 export default function Home() {
   return (
     <div className='h-[100vh] overflow-y-auto overflow-x-hidden'>
       <Hero />
 
-      <section className='h-1/2 w-full border-b border-b-muted-foreground bg-red-200'>
-        <div className='container mx-auto h-full max-w-7xl py-24'>
-          Another Section
-        </div>
-      </section>
+      <About />
 
-      <section className='h-1/2 w-full border-b border-b-muted-foreground bg-red-200'>
-        <div className='container mx-auto h-full max-w-7xl py-24'>
-          Another Section
-        </div>
-      </section>
+      <Member />
     </div>
   )
 }
