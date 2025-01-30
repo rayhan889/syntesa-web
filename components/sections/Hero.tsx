@@ -1,18 +1,17 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 
 const Hero = () => {
-  const fullText = ['Syntax Unesa', 'Community']
+  const fullText = useMemo(() => ['Syntax Unesa', 'Community'], [])
   const [displayedText, setDisplayedText] = useState(['', ''])
   const [index, setIndex] = useState(0)
   const [subIndex, setSubIndex] = useState(0)
-  const [showCursor, setShowCursor] = useState(true)
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
@@ -64,7 +63,7 @@ const Hero = () => {
         }
       }
     }
-  }, [subIndex, index, isDeleting])
+  }, [subIndex, index, isDeleting, fullText])
 
   return (
     <section className='relative h-full w-full bg-black/40'>
@@ -88,14 +87,12 @@ const Hero = () => {
           </Link>
           <h1 className='text-center text-5xl text-white md:text-7xl'>
             {displayedText[0]} <br /> {displayedText[1]}
-            <span
-              className={`animate-blink ml-1 inline-block h-12 w-1 bg-white ${showCursor ? '' : 'hidden'}`}
-            ></span>
+            <span className='animate-blink ml-1 inline-block h-12 w-1 bg-white'></span>
           </h1>
           <h4 className='w-full px-3 text-center text-base text-white md:w-[60%] md:text-lg'>
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s.
+            industry. Lorem Ipsum has been the industry&apos;s standard dummy
+            text ever since the 1500s.
           </h4>
           <Button
             size={'lg'}
