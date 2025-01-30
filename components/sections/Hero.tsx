@@ -1,13 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, forwardRef } from 'react'
 import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 
-const Hero = () => {
+const Hero = forwardRef<HTMLDivElement>((_, ref) => {
   const fullText = useMemo(() => ['Syntax Unesa', 'Community'], [])
   const [displayedText, setDisplayedText] = useState(['', ''])
   const [index, setIndex] = useState(0)
@@ -66,7 +66,11 @@ const Hero = () => {
   }, [subIndex, index, isDeleting, fullText])
 
   return (
-    <section className='relative h-full w-full bg-black/40' id='hero-section'>
+    <section
+      className='relative h-full w-full bg-black/40'
+      id='hero-section'
+      ref={ref}
+    >
       <Image
         src='/assets/main_img.jpg'
         alt='Main Image'
@@ -104,6 +108,8 @@ const Hero = () => {
       </div>
     </section>
   )
-}
+})
+
+Hero.displayName = 'Hero'
 
 export default Hero

@@ -14,7 +14,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 
-const Navbar = () => {
+type NavbarProps = {
+  isInViewRef?: boolean
+}
+
+const Navbar = ({ isInViewRef }: NavbarProps) => {
   const { isAuthenticated, getUser } = useKindeBrowserClient()
   const user = getUser()
 
@@ -45,14 +49,18 @@ const Navbar = () => {
     truncatedUserEmail = user?.email?.slice(0, 13) + '...'
   }
 
+  const textColor = isInViewRef ? 'text-white' : 'text-slate-900'
+
   return (
-    <nav className='fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between'>
+    <nav
+      className={`fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between ${isInViewRef ? 'bg-transparent' : 'border-b border-slate-300 bg-white/15 shadow-sm backdrop-blur-sm'}`}
+    >
       <div className='container mx-auto flex w-full max-w-7xl items-center justify-between'>
         <Link
           href={'/'}
           className={buttonVariants({
             variant: 'link',
-            className: 'text-base text-white'
+            className: `text-base ${textColor}`
           })}
         >
           🖥️Syntesa.
@@ -65,7 +73,7 @@ const Navbar = () => {
               href={link.href}
               className={buttonVariants({
                 variant: 'link',
-                className: 'text-base text-white'
+                className: `text-base ${textColor}`
               })}
             >
               {link.name}

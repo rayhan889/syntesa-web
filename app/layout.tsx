@@ -3,7 +3,6 @@ import { Rubik } from 'next/font/google'
 import './globals.css'
 
 import { Providers } from '@/components/Providers'
-import Navbar from '@/components/Navbar'
 
 const rubik = Rubik({
   subsets: ['latin']
@@ -23,8 +22,6 @@ export default function RootLayout({
     <Providers>
       <html lang='en'>
         <body className={`${rubik.className} antialiased`}>
-          <Navbar />
-
           <main>{children}</main>
         </body>
       </html>
