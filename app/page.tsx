@@ -1,21 +1,25 @@
+'use client'
+
+import { useInView } from 'react-intersection-observer'
+
 import Hero from '@/components/sections/Hero'
+import About from '@/components/sections/About'
+import Member from '@/components/sections/Member'
+import Navbar from '@/components/Navbar'
 
 export default function Home() {
+  const [heroRef, heroRefInView] = useInView({ threshold: 0.5 })
+
   return (
-    <div className='h-[100vh] overflow-y-auto overflow-x-hidden'>
-      <Hero />
+    <>
+      <Navbar isInViewRef={heroRefInView} />
+      <div className='h-[100vh] overflow-y-auto overflow-x-hidden'>
+        <Hero ref={heroRef} />
 
-      <section className='h-1/2 w-full border-b border-b-muted-foreground bg-red-200'>
-        <div className='container mx-auto h-full max-w-7xl py-24'>
-          Another Section
-        </div>
-      </section>
+        <About />
 
-      <section className='h-1/2 w-full border-b border-b-muted-foreground bg-red-200'>
-        <div className='container mx-auto h-full max-w-7xl py-24'>
-          Another Section
-        </div>
-      </section>
-    </div>
+        <Member />
+      </div>
+    </>
   )
 }
