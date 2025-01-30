@@ -45,8 +45,10 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
   let truncatedUserEmail
 
   if (isAuthenticated) {
-    initial = user?.given_name?.match(/[A-Z]/g)?.join('')
-    truncatedUserEmail = user?.email?.slice(0, 13) + '...'
+    initial = user?.given_name?.match(/[A-Z]/g)?.join('') ?? 'U'
+    truncatedUserEmail = user?.email
+      ? user.email.slice(0, 13) + '...'
+      : 'unknown@example.com'
   }
 
   const textColor = (isInViewRef ?? false) ? 'text-white' : 'text-slate-900'
@@ -96,8 +98,8 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
                 <div className='flex items-center px-3'>
                   <Avatar>
                     <Image
-                      src={user?.picture!}
-                      alt={user?.given_name!}
+                      src={user?.picture ?? '/default-avatar.png'}
+                      alt={user?.given_name ?? 'User'}
                       width={40}
                       height={40}
                     />
