@@ -86,8 +86,8 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
               <DropdownMenuTrigger>
                 <Avatar className='h-8 w-8 cursor-pointer'>
                   <Image
-                    src={user?.picture!}
-                    alt={user?.given_name!}
+                    src={user?.picture ?? 'https://i.pravatar.cc/40'}
+                    alt={user?.given_name ?? 'User'}
                     width={40}
                     height={40}
                   />
@@ -106,7 +106,9 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
                     <AvatarFallback>{initial}</AvatarFallback>
                   </Avatar>
                   <div className='block p-4'>
-                    <h3 className='font-medium'>{user?.given_name}</h3>
+                    <h3 className='font-medium'>
+                      {user?.given_name ?? 'User'}
+                    </h3>
                     <span className='text-sm text-muted-foreground'>
                       {truncatedUserEmail}
                     </span>
