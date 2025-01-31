@@ -45,11 +45,13 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
   let truncatedUserEmail
 
   if (isAuthenticated) {
-    initial = user?.given_name?.match(/[A-Z]/g)?.join('')
-    truncatedUserEmail = user?.email?.slice(0, 13) + '...'
+    initial = user?.given_name?.match(/[A-Z]/g)?.join('') ?? 'U'
+    truncatedUserEmail = user?.email
+      ? user.email.slice(0, 13) + '...'
+      : 'unknown@example.com'
   }
 
-  const textColor = isInViewRef ? 'text-white' : 'text-slate-900'
+  const textColor = (isInViewRef ?? false) ? 'text-white' : 'text-slate-900'
 
   return (
     <nav
@@ -84,8 +86,8 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
               <DropdownMenuTrigger>
                 <Avatar className='h-8 w-8 cursor-pointer'>
                   <Image
-                    src={user?.picture!}
-                    alt={user?.given_name!}
+                    src={user?.picture ?? 'https://i.pravatar.cc/40'}
+                    alt={user?.given_name ?? 'User'}
                     width={40}
                     height={40}
                   />
@@ -96,15 +98,17 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
                 <div className='flex items-center px-3'>
                   <Avatar>
                     <Image
-                      src={user?.picture!}
-                      alt={user?.given_name!}
+                      src={user?.picture ?? '/default-avatar.png'}
+                      alt={user?.given_name ?? 'User'}
                       width={40}
                       height={40}
                     />
                     <AvatarFallback>{initial}</AvatarFallback>
                   </Avatar>
                   <div className='block p-4'>
-                    <h3 className='font-medium'>{user?.given_name}</h3>
+                    <h3 className='font-medium'>
+                      {user?.given_name ?? 'User'}
+                    </h3>
                     <span className='text-sm text-muted-foreground'>
                       {truncatedUserEmail}
                     </span>
