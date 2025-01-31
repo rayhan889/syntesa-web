@@ -130,7 +130,7 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
             <LoginLink
               className={buttonVariants({
                 variant: 'ghost',
-                className: 'text-base text-white'
+                className: `text-base ${textColor}`
               })}
             >
               Sign In
