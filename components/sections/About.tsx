@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 const About = () => {
   return (
-    <section className='h-[75%] w-full md:h-1/2' id='about-section'>
-      <div className='container mx-auto h-full max-w-7xl py-14'>
+    <section className='h-[85%] w-full md:h-1/2' id='about-section'>
+      <div className='container mx-auto h-full max-w-7xl py-24'>
         <div className='grid h-full grid-rows-2 md:grid-cols-3'>
           <div className='row-span-2 h-full md:col-span-2'>
             <div className='flex h-full items-center'>
