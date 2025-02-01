@@ -6,12 +6,49 @@ import {
   Linkedin
 } from 'lucide-react'
 import { membersStatic } from '@/static/members'
+import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { Button, buttonVariants } from '@/components/ui/button'
 
 const Member = () => {
+  const [isAtStart, setIsAtStart] = useState(true)
+  const [isAtEnd, setIsAtEnd] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
+      setIsAtStart(scrollLeft === 0)
+      setIsAtEnd(scrollLeft + clientWidth >= scrollWidth - 1)
+    }
+  }
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const amountOfScroll = 2000
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -amountOfScroll : amountOfScroll,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  useEffect(() => {
+    const handleScroll = () => checkScroll()
+    const ref = scrollRef.current
+
+    if (ref) {
+      ref.addEventListener('scroll', handleScroll)
+      checkScroll()
+    }
+
+    return () => {
+      if (ref) ref.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <section className='h-[75%] w-full lg:h-[65%]'>
       <div className='container mx-auto h-full max-w-7xl overflow-x-auto py-14'>
@@ -26,16 +63,29 @@ const Member = () => {
               </p>
             </div>
             <div className='hidden items-center gap-x-4 md:flex'>
-              <Button variant={'outline'} size={'icon'}>
+              <Button
+                variant={isAtStart ? 'ghost' : 'outline'}
+                size={'icon'}
+                onClick={() => scroll('left')}
+                disabled={isAtStart}
+              >
                 <ArrowLeft />
               </Button>
-              <Button variant={'outline'} size={'icon'}>
+              <Button
+                variant={isAtEnd ? 'ghost' : 'outline'}
+                size={'icon'}
+                onClick={() => scroll('right')}
+                disabled={isAtEnd}
+              >
                 <ArrowRight />
               </Button>
             </div>
           </div>
           <div className='relative h-full'>
-            <div className='custom-scrollbar flex h-full w-full space-x-4 overflow-x-auto scroll-smooth'>
+            <div
+              ref={scrollRef}
+              className='custom-scrollbar flex h-full w-full space-x-4 overflow-x-auto scroll-smooth'
+            >
               {membersStatic.map(member => (
                 <div
                   key={member.id}
@@ -95,10 +145,20 @@ const Member = () => {
             </div>
           </div>
           <div className='flex w-full items-center justify-between gap-x-4 md:hidden'>
-            <Button variant={'outline'} size={'icon'}>
+            <Button
+              variant={isAtStart ? 'ghost' : 'outline'}
+              size={'icon'}
+              onClick={() => scroll('left')}
+              disabled={isAtStart}
+            >
               <ArrowLeft />
             </Button>
-            <Button variant={'outline'} size={'icon'}>
+            <Button
+              variant={isAtEnd ? 'ghost' : 'outline'}
+              size={'icon'}
+              onClick={() => scroll('right')}
+              disabled={isAtEnd}
+            >
               <ArrowRight />
             </Button>
           </div>

@@ -55,7 +55,7 @@ const Navbar = ({ isInViewRef }: NavbarProps) => {
 
   return (
     <nav
-      className={`fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between ${isInViewRef ? 'bg-transparent' : 'border-b border-slate-300 bg-white/15 shadow-sm backdrop-blur-sm'}`}
+      className={`fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between ${isInViewRef ? 'bg-transparent' : 'border-b border-slate-300 bg-white/80 shadow-sm backdrop-blur-sm'}`}
     >
       <div className='container mx-auto flex w-full max-w-7xl items-center justify-between'>
         <Link
