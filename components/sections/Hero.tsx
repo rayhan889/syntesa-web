@@ -100,7 +100,7 @@ const Hero = forwardRef<HTMLDivElement>((_, ref) => {
           </h4>
           <Button
             size={'lg'}
-            className='w-[80%] bg-blue-600 shadow-sm shadow-blue-500/40 transition-colors duration-300 hover:bg-blue-700 lg:w-[15%]'
+            className='w-[80%] border border-white/20 bg-gradient-to-tr from-blue-700 via-blue-600 to-blue-500 shadow-md shadow-blue-950/15 transition-transform duration-300 hover:-translate-y-1 hover:bg-blue-800 lg:w-[25%]'
           >
             Learn More
           </Button>
